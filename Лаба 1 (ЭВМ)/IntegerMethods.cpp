@@ -7,46 +7,48 @@
 
 using namespace std;
 
-void PrintBinary(bool * value)
+void PrintBinary(bool * value, int lenght)
 {
-	for (int i = 0; i < INT_LENGHT; i++)
+	for (int i = 0; i < lenght; i++)
 	{
 		cout << value[i] ? 1 : 0;
 	}
 	cout << endl;
 }
 
-void PrintLongBinary(bool * value)
+void PrintBinary(bool * value, int start, int end)
 {
-	for (int i = INT_LENGHT; i < 2 * INT_LENGHT; i++)
+	for (int i = start; i < end; i++)
 	{
 		cout << value[i] ? 1 : 0;
 	}
 	cout << endl;
 }
 
-int BinaryToInt(bool* value)
+int BinaryToInt(bool* value, int lenght)
 {
 	int result = 0;
-	for (int i = 0; i < INT_LENGHT; i++)
+	for (int i = 0; i < lenght; i++)
 	{
 		if (value[i])
 		{
-			result += pow(2, 31 - i);
+			result += pow(2, lenght - 1 - i);
 		}
 	}
 	return result;
 }
 
-int LongBinaryToInt(bool* value)
+int BinaryToInt(bool * value, int start, int end)
 {
 	int result = 0;
-	for (int i = INT_LENGHT; i < 2 * INT_LENGHT; i++)
+	int count = 0;
+	for (int i = start; i < end; i++)
 	{
 		if (value[i])
 		{
-			result += pow(2, 63 - i);
+			result += pow(2, (end - start - 1) - count);
 		}
+		count++;
 	}
 	return result;
 }

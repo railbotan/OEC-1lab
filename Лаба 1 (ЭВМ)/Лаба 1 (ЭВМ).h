@@ -2,15 +2,17 @@
 
 const int INT_LENGHT = sizeof(int) * CHAR_BIT;
 
+const int FLOAT_LENGHT = 128;
+
 void example();
 
-void PrintBinary(bool * value);
+void PrintBinary(bool * value, int lenght);
 
-void PrintLongBinary(bool * value);
+void PrintBinary(bool * value, int start, int end);
 
-int BinaryToInt(bool* value);
+int BinaryToInt(bool* value, int lenght);
 
-int LongBinaryToInt(bool* value);
+int BinaryToInt(bool* value, int start, int end);
 
 void ConvertToSecondaryCode(bool * result);
 
@@ -23,3 +25,11 @@ bool* SumIntegerBinary(bool* a_binary, bool* b_binary);
 bool* SumInMultiplication(bool* a_binary, bool* b_binary);
 
 bool* MultiplicationInteger(bool* a, bool* b);
+
+int GetTrueLenght(bool* value, int lenght);
+
+bool* IntegerPartToBinary(float value, int lenght);
+
+bool* ParseFraction(float fract);
+
+bool* FloatToBinary(float value);

@@ -113,3 +113,29 @@ bool* SumInMultiplication(bool* a_binary, bool* b_binary)
 	delete[] b_binary;
 	return result;
 }
+
+bool* MultiplicationInteger(bool* a, bool* b)
+{
+	bool* result = new bool[2 * INT_LENGHT];
+	for (int i = 0; i < 2 * INT_LENGHT; i++)
+	{
+		result[i] = false;
+	}
+	for (int i = 0; i < INT_LENGHT; i++)
+	{
+		if (b[i])
+		{
+			bool* temp = new bool[2 * INT_LENGHT];
+			for (int k = 0; k < 2 * INT_LENGHT; k++)
+			{
+				temp[k] = false;
+			}
+			for (int j = 0; j < INT_LENGHT; j++)
+			{
+				temp[i + j + 1] = a[j];
+			}
+			result = SumInMultiplication(result, temp);
+		}
+	}
+	return result;
+}

@@ -21,3 +21,5 @@ bool XOR(bool a, bool b);
 bool* SumIntegerBinary(bool* a_binary, bool* b_binary);
 
 bool* SumInMultiplication(bool* a_binary, bool* b_binary);
+
+bool* MultiplicationInteger(bool* a, bool* b);

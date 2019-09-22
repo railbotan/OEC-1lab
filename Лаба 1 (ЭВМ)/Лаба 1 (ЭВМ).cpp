@@ -8,6 +8,7 @@ using namespace std;
 
 void FirstTask()
 {
+	cout << "Перевод числа в двоичный код" << endl;
 	cout << "Введите число:" << endl;
 	float num;
 	cin >> num;
@@ -34,6 +35,7 @@ void FirstTask()
 
 void SecondTask() 
 {
+	cout << "Сложение и умножение целых чисел" << endl;
 	cout << "Введите целые числа" << endl;
 	int a, b;
 	cin >> a >> b;
@@ -53,6 +55,29 @@ void SecondTask()
 	cout << "a * b = " << BinaryToInt(resultMult, INT_LENGHT, 2 * INT_LENGHT) << endl;
 }
 
+void ThirdTask() 
+{
+	cout << "Сложение и умножение дробных чисел" << endl;
+	cout << "Введите числа" << endl;
+	float a, b;
+	cin >> a >> b;
+	bool* a_binary = FloatToBinary(a);
+	cout << "a = \t";
+	PrintBinary(a_binary, INT_LENGHT);
+	bool* b_binary = FloatToBinary(b);
+	cout << "b = \t";
+	PrintBinary(b_binary, INT_LENGHT);
+
+	bool* resultSum = SumFloat(a_binary, b_binary);
+	cout << "a + b = ";
+	PrintBinary(resultSum, INT_LENGHT);
+	bool* resultMult = MultiplicationFloat(a_binary, b_binary);
+	cout << "a * b = ";
+	PrintBinary(resultMult, INT_LENGHT);
+	cout << "a + b = " << a + b << endl;
+	cout << "a * b = " << a * b << endl;
+}
+
 int main()
 {
 	setlocale(0, "");
@@ -63,6 +88,8 @@ int main()
 
 	//SecondTask();
 
+	//ThirdTask();
+
 	float a, b;
 	cin >> a >> b;
 	bool* a_binary = FloatToBinary(a);
@@ -72,17 +99,21 @@ int main()
 	cout << "b = \t";
 	PrintBinary(b_binary, INT_LENGHT);
 
-	cout << "\t";
-	float c = a * b;
-	int* rf = reinterpret_cast<int*>(&c);
-	cout << bitset<32>(*rf) << endl;
-	cout << "\t";
-	PrintBinary(MultiplicationFloat(a_binary, b_binary), INT_LENGHT);
-	
+	float s = a + b;
+	int* rf = reinterpret_cast<int*>(&s);
+	cout << "(a + b) = " << bitset<32>(*rf) << endl;
+	bool* resultSum = SumFloat(a_binary, b_binary);
+	cout << " a + b  = ";
+	PrintBinary(resultSum, INT_LENGHT);
 
-	/*float a;
-	cin >> a;
-	int* ra = reinterpret_cast<int*>(&a);
-	cout << bitset<32>(*ra) << endl;
-	PrintBinary(FloatToBinary(a), INT_LENGHT);*/
+	s = a * b;
+	rf = reinterpret_cast<int*>(&s);
+	cout << "(a * b) = " << bitset<32>(*rf) << endl;
+	bool* resultMult = MultiplicationFloat(a_binary, b_binary);
+	cout << " a * b  = ";
+	PrintBinary(resultMult, INT_LENGHT);
+
+
+	cout << "a + b = " << a + b << endl;
+	cout << "a * b = " << a * b << endl;
 }

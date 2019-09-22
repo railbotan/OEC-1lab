@@ -8,8 +8,7 @@ using namespace std;
 
 void PrintBinary(bool * value, int lenght)
 {
-	for (int i = 0; i < lenght; i++)
-	{
+	for (int i = 0; i < lenght; i++) {
 		cout << value[i] ? 1 : 0;
 	}
 	cout << endl;
@@ -17,8 +16,7 @@ void PrintBinary(bool * value, int lenght)
 
 void PrintBinary(bool * value, int start, int end)
 {
-	for (int i = start; i < end; i++)
-	{
+	for (int i = start; i < end; i++) {
 		cout << value[i] ? 1 : 0;
 	}
 	cout << endl;
@@ -27,10 +25,8 @@ void PrintBinary(bool * value, int start, int end)
 int BinaryToInt(bool* value, int lenght)
 {
 	int result = 0;
-	for (int i = 0; i < lenght; i++)
-	{
-		if (value[i])
-		{
+	for (int i = 0; i < lenght; i++) {
+		if (value[i]) {
 			result += pow(2, lenght - 1 - i);
 		}
 	}
@@ -41,10 +37,8 @@ int BinaryToInt(bool * value, int start, int end)
 {
 	int result = 0;
 	int count = 0;
-	for (int i = start; i < end; i++)
-	{
-		if (value[i])
-		{
+	for (int i = start; i < end; i++) {
+		if (value[i]) {
 			result += pow(2, (end - start - 1) - count);
 		}
 		count++;
@@ -52,17 +46,13 @@ int BinaryToInt(bool * value, int start, int end)
 	return result;
 }
 
-void ConvertToSecondaryCode(bool * result)
+void ConvertToSecondaryCode(bool * result, int lenght)
 {
 	bool flag = false;
-	for (int i = INT_LENGHT - 1; i >= 0; i--)
-	{
-		if (!flag && result[i])
-		{
+	for (int i = lenght - 1; i >= 0; i--) {
+		if (!flag && result[i]) {
 			flag = true;
-		}
-		else if (flag)
-		{
+		} else if (flag) {
 			result[i] = !result[i];
 		}
 	}
@@ -72,14 +62,12 @@ bool* IntToBinary(int value)
 {
 	int temp = value;
 	bool* result = new bool[INT_LENGHT];
-	for (int i = INT_LENGHT - 1; i >= 0; i--)
-	{
+	for (int i = INT_LENGHT - 1; i >= 0; i--) {
 		result[i] = temp % 2;
 		temp /= 2;
 	}
-	if (value < 0)
-	{
-		ConvertToSecondaryCode(result);
+	if (value < 0) {
+		ConvertToSecondaryCode(result, INT_LENGHT);
 	}
 	return result;
 }
@@ -93,8 +81,7 @@ bool* SumIntegerBinary(bool* a_binary, bool* b_binary)
 {
 	bool* result = new bool[INT_LENGHT];
 	bool carry = false;
-	for (int i = INT_LENGHT - 1; i >= 0; i--)
-	{
+	for (int i = INT_LENGHT - 1; i >= 0; i--) {
 		result[i] = XOR(XOR(a_binary[i], b_binary[i]), carry);
 		carry = a_binary[i] && b_binary[i] || carry && b_binary[i] || a_binary[i] && carry;
 	}
@@ -105,8 +92,7 @@ bool* SumInMultiplication(bool* a_binary, bool* b_binary, int lenght)
 {
 	bool* result = new bool[lenght];
 	bool carry = false;
-	for (int i = lenght - 1; i >= 0; i--)
-	{
+	for (int i = lenght - 1; i >= 0; i--) {
 		result[i] = XOR(XOR(a_binary[i], b_binary[i]), carry);
 		carry = a_binary[i] && b_binary[i] || carry && b_binary[i] || a_binary[i] && carry;
 	}
@@ -118,21 +104,16 @@ bool* SumInMultiplication(bool* a_binary, bool* b_binary, int lenght)
 bool* MultiplicationInteger(bool* a, bool* b)
 {
 	bool* result = new bool[2 * INT_LENGHT];
-	for (int i = 0; i < 2 * INT_LENGHT; i++)
-	{
+	for (int i = 0; i < 2 * INT_LENGHT; i++) {
 		result[i] = false;
 	}
-	for (int i = 0; i < INT_LENGHT; i++)
-	{
-		if (b[i])
-		{
+	for (int i = 0; i < INT_LENGHT; i++) {
+		if (b[i]) {
 			bool* temp = new bool[2 * INT_LENGHT];
-			for (int k = 0; k < 2 * INT_LENGHT; k++)
-			{
+			for (int k = 0; k < 2 * INT_LENGHT; k++) {
 				temp[k] = false;
 			}
-			for (int j = 0; j < INT_LENGHT; j++)
-			{
+			for (int j = 0; j < INT_LENGHT; j++) {
 				temp[i + j + 1] = a[j];
 			}
 			result = SumInMultiplication(result, temp, 2 * INT_LENGHT);

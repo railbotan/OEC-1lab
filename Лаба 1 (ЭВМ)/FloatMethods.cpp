@@ -58,6 +58,10 @@ bool* FloatToBinary(float value)
 	{
 		characteristic = fractLenght - 1;
 	}
+	if (value == 0)
+	{
+		characteristic = 0;
+	}
 	bool* characteristicBolean = IntegerPartToBinary(characteristic, 8);
 	bool* result = new bool[32];
 	result[0] = value < 0;
@@ -76,6 +80,94 @@ bool* FloatToBinary(float value)
 	for (int i = 9; i < 32; i++)
 	{
 		result[i] = number[i - 9 + startPosition];
+	}
+	return result;
+}
+
+bool* SumExponent(bool * a, bool * b)
+{
+	bool* a_exponent = new bool[8];
+	bool* b_exponent = new bool[8];
+	for (int i = 0; i < 8; i++)
+	{
+		a_exponent[i] = a[i + 1];
+		b_exponent[i] = b[i + 1];
+	}
+	bool* temp = SumInMultiplication(a_exponent, b_exponent, 8);
+	bool* shift = new bool[8];
+	for (int i = 1; i < 7; i++)
+	{
+		shift[i] = false;
+	}
+	shift[0] = true;
+	shift[7] = true;
+	return SumInMultiplication(temp, shift, 8);
+}
+
+bool * MultiplicationMantisses(bool * a, bool * b)
+{
+	bool* mantissa = new bool[48];
+	for (int i = 0; i < 48; i++)
+	{
+		mantissa[i] = false;
+		
+	}
+
+	bool* a_mantissa = new bool[24];
+	bool* b_mantissa = new bool[24];
+	a_mantissa[0] = 1;
+	b_mantissa[0] = 1;
+	for (int i = 1; i < 24; i++)
+	{
+		a_mantissa[i] = a[i + 8];
+		b_mantissa[i] = b[i + 8];
+	}
+
+	for (int i = 0; i < 24; i++)
+	{
+		if (b_mantissa[i])
+		{
+			bool* temp = new bool[48];
+			for (int k = 0; k < 48; k++)
+			{
+				temp[k] = false;
+			}
+
+			for (int j = 0; j < 24; j++)
+			{
+				temp[i + j + 1] = a_mantissa[j];
+			}
+			mantissa = SumInMultiplication(mantissa, temp, 48);
+		}
+	}
+	return mantissa;
+}
+
+bool* MultiplicationFloat(bool* a, bool* b)
+{
+	bool* result = new bool[INT_LENGHT];
+	result[0] = a[0] && b[0] ? false : a[0] || b[0];
+	bool* result_exponent = SumExponent(a, b);
+	bool* result_mantissa = MultiplicationMantisses(a, b);
+	int start = 2;
+	if (result_mantissa[0])
+	{
+		bool* shift = new bool[8];
+		for (int i = 0; i < 7; i++)
+		{
+			shift[i] = false;
+		}
+		shift[7] = true;
+		result_exponent = SumInMultiplication(result_exponent, shift, 8);
+		start = 1;
+	}
+	for (int i = 0; i < 8; i++)
+	{
+		result[i + 1] = result_exponent[i];
+	}
+	for (int i = 9; i < INT_LENGHT; i++)
+	{
+		result[i] = result_mantissa[i - 9 + start];
 	}
 	return result;
 }

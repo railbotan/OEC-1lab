@@ -4,7 +4,6 @@
 #include <limits>
 #include "Ëàáà 1 (ÝÂÌ).h"
 
-
 using namespace std;
 
 void PrintBinary(bool * value, int lenght)
@@ -102,11 +101,11 @@ bool* SumIntegerBinary(bool* a_binary, bool* b_binary)
 	return result;
 }
 
-bool* SumInMultiplication(bool* a_binary, bool* b_binary)
+bool* SumInMultiplication(bool* a_binary, bool* b_binary, int lenght)
 {
-	bool* result = new bool[2 * INT_LENGHT];
+	bool* result = new bool[lenght];
 	bool carry = false;
-	for (int i = 2 * INT_LENGHT - 1; i >= 0; i--)
+	for (int i = lenght - 1; i >= 0; i--)
 	{
 		result[i] = XOR(XOR(a_binary[i], b_binary[i]), carry);
 		carry = a_binary[i] && b_binary[i] || carry && b_binary[i] || a_binary[i] && carry;
@@ -136,7 +135,7 @@ bool* MultiplicationInteger(bool* a, bool* b)
 			{
 				temp[i + j + 1] = a[j];
 			}
-			result = SumInMultiplication(result, temp);
+			result = SumInMultiplication(result, temp, 2 * INT_LENGHT);
 		}
 	}
 	return result;

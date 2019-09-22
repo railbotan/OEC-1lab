@@ -1,4 +1,4 @@
-﻿  IntegerMethods.cpp
-c:\users\раиль мухамадиев\source\repos\лаба 1 (эвм)\лаба 1 (эвм)\integermethods.cpp(35): warning C4244: +=: преобразование "double" в "int", возможна потеря данных
-c:\users\раиль мухамадиев\source\repos\лаба 1 (эвм)\лаба 1 (эвм)\integermethods.cpp(49): warning C4244: +=: преобразование "double" в "int", возможна потеря данных
+﻿  Лаба 1 (ЭВМ).cpp
+c:\users\раиль мухамадиев\source\repos\лаба 1 (эвм)\лаба 1 (эвм)\лаба 1 (эвм).cpp(19): warning C4244: аргумент: преобразование "float" в "unsigned __int64", возможна потеря данных
+c:\users\раиль мухамадиев\source\repos\лаба 1 (эвм)\лаба 1 (эвм)\лаба 1 (эвм).cpp(20): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
   Лаба 1 (ЭВМ).vcxproj -> C:\Users\Раиль Мухамадиев\source\repos\Лаба 1 (ЭВМ)\Debug\Лаба 1 (ЭВМ).exe

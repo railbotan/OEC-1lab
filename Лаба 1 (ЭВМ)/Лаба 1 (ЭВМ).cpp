@@ -4,7 +4,6 @@
 #include <limits>
 #include "Лаба 1 (ЭВМ).h"
 
-
 using namespace std;
 
 void FirstTask()
@@ -25,9 +24,8 @@ void FirstTask()
 	else
 	{
 		cout << "Вы ввели дробное число: " << num << ", двоичный код которого:" << endl;
-		cout << "bitset:	\t" << bitset<32>(integer_part) << endl;
 		int* rf = reinterpret_cast<int*>(&num);
-		cout << bitset<32>(*rf) << endl;
+		cout << "bitset:	\t" << bitset<32>(*rf) << endl;
 		cout << "Наш метод:\t";
 		PrintBinary(FloatToBinary(num), INT_LENGHT);
 	}
@@ -63,6 +61,28 @@ int main()
 
 	//FirstTask();
 
-	SecondTask();
+	//SecondTask();
 
+	float a, b;
+	cin >> a >> b;
+	bool* a_binary = FloatToBinary(a);
+	cout << "a = \t";
+	PrintBinary(a_binary, INT_LENGHT);
+	bool* b_binary = FloatToBinary(b);
+	cout << "b = \t";
+	PrintBinary(b_binary, INT_LENGHT);
+
+	cout << "\t";
+	float c = a * b;
+	int* rf = reinterpret_cast<int*>(&c);
+	cout << bitset<32>(*rf) << endl;
+	cout << "\t";
+	PrintBinary(MultiplicationFloat(a_binary, b_binary), INT_LENGHT);
+	
+
+	/*float a;
+	cin >> a;
+	int* ra = reinterpret_cast<int*>(&a);
+	cout << bitset<32>(*ra) << endl;
+	PrintBinary(FloatToBinary(a), INT_LENGHT);*/
 }

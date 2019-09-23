@@ -22,7 +22,7 @@ void PrintBinary(bool * value, int start, int end)
 	cout << endl;
 }
 
-int BinaryToInt(bool* value, int lenght)
+int ConvertBinaryToInt(bool* value, int lenght)
 {
 	int result = 0;
 	for (int i = 0; i < lenght; i++) {
@@ -33,7 +33,7 @@ int BinaryToInt(bool* value, int lenght)
 	return result;
 }
 
-int BinaryToInt(bool * value, int start, int end)
+int ConvertBinaryToInt(bool * value, int start, int end)
 {
 	int result = 0;
 	int count = 0;
@@ -46,19 +46,20 @@ int BinaryToInt(bool * value, int start, int end)
 	return result;
 }
 
-void ConvertToSecondaryCode(bool * result, int lenght)
+void GetSecondaryCode(bool * result, int lenght)
 {
 	bool flag = false;
 	for (int i = lenght - 1; i >= 0; i--) {
 		if (!flag && result[i]) {
 			flag = true;
-		} else if (flag) {
+		}
+		else if (flag) {
 			result[i] = !result[i];
 		}
 	}
 }
 
-bool* IntToBinary(int value) 
+bool* ParseIntToBinary(int value)
 {
 	int temp = value;
 	bool* result = new bool[INT_LENGHT];
@@ -67,7 +68,7 @@ bool* IntToBinary(int value)
 		temp /= 2;
 	}
 	if (value < 0) {
-		ConvertToSecondaryCode(result, INT_LENGHT);
+		GetSecondaryCode(result, INT_LENGHT);
 	}
 	return result;
 }
@@ -77,7 +78,7 @@ bool XOR(bool a, bool b)
 	return a && !b || !a && b;
 }
 
-bool* SumIntegerBinary(bool* a_binary, bool* b_binary)
+bool* SumInteger(bool* a_binary, bool* b_binary)
 {
 	bool* result = new bool[INT_LENGHT];
 	bool carry = false;
@@ -88,7 +89,7 @@ bool* SumIntegerBinary(bool* a_binary, bool* b_binary)
 	return result;
 }
 
-bool* SumInMultiplication(bool* a_binary, bool* b_binary, int lenght)
+bool* Summator(bool* a_binary, bool* b_binary, int lenght)
 {
 	bool* result = new bool[lenght];
 	bool carry = false;
@@ -116,7 +117,7 @@ bool* MultiplicationInteger(bool* a, bool* b)
 			for (int j = 0; j < INT_LENGHT; j++) {
 				temp[i + j + 1] = a[j];
 			}
-			result = SumInMultiplication(result, temp, 2 * INT_LENGHT);
+			result = Summator(result, temp, 2 * INT_LENGHT);
 		}
 	}
 	return result;

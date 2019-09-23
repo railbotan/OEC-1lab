@@ -18,7 +18,7 @@ void FirstTask()
 	{
 		cout << "Вы ввели целое число: " << num << ", двоичный код которого:" << endl;
 		cout << "bitset:	\t" << bitset<32>(integer_part) << endl;
-		bool* value = IntToBinary(integer_part);
+		bool* value = ParseIntToBinary(integer_part);
 		cout << "Наш метод:\t";
 		PrintBinary(value, INT_LENGHT);
 	}
@@ -28,7 +28,7 @@ void FirstTask()
 		int* rf = reinterpret_cast<int*>(&num);
 		cout << "bitset:	\t" << bitset<32>(*rf) << endl;
 		cout << "Наш метод:\t";
-		PrintBinary(FloatToBinary(num), INT_LENGHT);
+		PrintBinary(ParseFloatToBinary(num), INT_LENGHT);
 	}
 	cout << endl;
 }
@@ -39,20 +39,20 @@ void SecondTask()
 	cout << "Введите целые числа" << endl;
 	int a, b;
 	cin >> a >> b;
-	bool* a_binary = IntToBinary(a);
+	bool* a_binary = ParseIntToBinary(a);
 	cout << "a = \t";
 	PrintBinary(a_binary, INT_LENGHT);
-	bool* b_binary = IntToBinary(b);
+	bool* b_binary = ParseIntToBinary(b);
 	cout << "b = \t";
 	PrintBinary(b_binary, INT_LENGHT);
-	bool* resultSum = SumIntegerBinary(a_binary, b_binary);
+	bool* resultSum = SumInteger(a_binary, b_binary);
 	cout << "a + b = ";
 	PrintBinary(resultSum, INT_LENGHT);
 	bool* resultMult = MultiplicationInteger(a_binary, b_binary);
 	cout << "a * b = ";
 	PrintBinary(resultMult, INT_LENGHT, 2 * INT_LENGHT);
-	cout << "a + b = " << BinaryToInt(resultSum, INT_LENGHT) << endl;
-	cout << "a * b = " << BinaryToInt(resultMult, INT_LENGHT, 2 * INT_LENGHT) << endl;
+	cout << "a + b = " << ConvertBinaryToInt(resultSum, INT_LENGHT) << endl;
+	cout << "a * b = " << ConvertBinaryToInt(resultMult, INT_LENGHT, 2 * INT_LENGHT) << endl;
 }
 
 void ThirdTask() 
@@ -61,10 +61,10 @@ void ThirdTask()
 	cout << "Введите числа" << endl;
 	float a, b;
 	cin >> a >> b;
-	bool* a_binary = FloatToBinary(a);
+	bool* a_binary = ParseFloatToBinary(a);
 	cout << "a = \t";
 	PrintBinary(a_binary, INT_LENGHT);
-	bool* b_binary = FloatToBinary(b);
+	bool* b_binary = ParseFloatToBinary(b);
 	cout << "b = \t";
 	PrintBinary(b_binary, INT_LENGHT);
 
@@ -82,38 +82,20 @@ int main()
 {
 	setlocale(0, "");
 
-	//example();
+	example();
 
-	//FirstTask();
+	cout << endl;
+	cout << endl;
 
-	//SecondTask();
+	FirstTask();
 
-	//ThirdTask();
+	cout << endl;
+	cout << endl;
 
-	float a, b;
-	cin >> a >> b;
-	bool* a_binary = FloatToBinary(a);
-	cout << "a = \t";
-	PrintBinary(a_binary, INT_LENGHT);
-	bool* b_binary = FloatToBinary(b);
-	cout << "b = \t";
-	PrintBinary(b_binary, INT_LENGHT);
+	SecondTask();
 
-	float s = a + b;
-	int* rf = reinterpret_cast<int*>(&s);
-	cout << "(a + b) = " << bitset<32>(*rf) << endl;
-	bool* resultSum = SumFloat(a_binary, b_binary);
-	cout << " a + b  = ";
-	PrintBinary(resultSum, INT_LENGHT);
+	cout << endl;
+	cout << endl;
 
-	s = a * b;
-	rf = reinterpret_cast<int*>(&s);
-	cout << "(a * b) = " << bitset<32>(*rf) << endl;
-	bool* resultMult = MultiplicationFloat(a_binary, b_binary);
-	cout << " a * b  = ";
-	PrintBinary(resultMult, INT_LENGHT);
-
-
-	cout << "a + b = " << a + b << endl;
-	cout << "a * b = " << a * b << endl;
+	ThirdTask();
 }

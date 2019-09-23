@@ -10,29 +10,29 @@ void PrintBinary(bool * value, int lenght);
 
 void PrintBinary(bool * value, int start, int end);
 
-int BinaryToInt(bool* value, int lenght);
+int ConvertBinaryToInt(bool* value, int lenght);
 
-int BinaryToInt(bool* value, int start, int end);
+int ConvertBinaryToInt(bool* value, int start, int end);
 
-void ConvertToSecondaryCode(bool * result, int lenght);
+void GetSecondaryCode(bool * result, int lenght);
 
-bool* IntToBinary(int value);
+bool* ParseIntToBinary(int value);
 
 bool XOR(bool a, bool b);
 
-bool* SumIntegerBinary(bool* a_binary, bool* b_binary);
+bool* SumInteger(bool* a_binary, bool* b_binary);
 
-bool* SumInMultiplication(bool* a_binary, bool* b_binary, int lenght);
+bool* Summator(bool* a_binary, bool* b_binary, int lenght);
 
 bool* MultiplicationInteger(bool* a, bool* b);
 
 int GetTrueLenght(bool* value, int lenght);
 
-bool* IntegerPartToBinary(float value, int lenght);
+bool* ParseIntegerPart(float value, int lenght);
 
-bool* ParseFraction(float fract);
+bool* ParseFractionPart(float fract);
 
-bool* FloatToBinary(float value);
+bool* ParseFloatToBinary(float value);
 
 void CompareFloats(bool * &a, bool * &b);
 
@@ -44,7 +44,7 @@ void UnshiftMantissa(bool * mantissa);
 
 bool* SumMantisses(bool * a, bool * b);
 
-bool IsNull(bool* a, int lenght);
+bool IsZero(bool* a, int lenght);
 
 bool* SumFloat(bool* a, bool* b);
 
